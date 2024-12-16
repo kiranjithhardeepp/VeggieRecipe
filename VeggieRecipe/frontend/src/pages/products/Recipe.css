@@ -1,0 +1,162 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://thumbs.dreamstime.com/b/christmas-mas-baking-culinary-background-cooking-recipe-xmas-noel-gingerbread-cookies-kitchen-table-ingredients-161556625.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+  }
+  
+  h1, h2, h3 {
+    color: #333;
+  }
+  
+  form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  input,
+  select,
+  textarea,
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+  }
+  
+  input[type="file"] {
+    padding: 5px;
+  }
+  
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  button {
+    background-color: #24b98f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #47c566;
+  }
+  
+  select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Recipe Cards (All Recipes Page) */
+  .recipe-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  .recipe-card {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .recipe-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .recipe-card h3 {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+  
+  .recipe-card p {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .recipe-card button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+  
+  .recipe-card button:hover {
+    background-color: #218838;
+  }
+  
+  /* Recipe Detail Page */
+  .recipe-detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recipe-detail img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .recipe-detail h2 {
+    margin: 1.5rem 0;
+  }
+  
+  .recipe-detail h3 {
+    margin-top: 1rem;
+    color: #007bff;
+  }
+  
+  .recipe-detail ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .recipe-detail li {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .recipe-detail p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .recipe-cards {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  
+    form {
+      width: 90%;
+    }
+  }
+  
