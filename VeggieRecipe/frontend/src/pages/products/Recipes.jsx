@@ -1,38 +1,30 @@
-import React ,{useState,  useEffect} from 'react'
-import CategoryWrapper from '../category/CategoryWrapper';
-import Card from '../../components/Card';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import Card from "../../components/Card"; // Import the Card component
 
 const Recipes = () => {
-    const [recipes,setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const imageUrl =
+    "https://www.istockphoto.com/search/2/image-film?phrase=good+food"; // Your static image URL
 
-    useEffect(() => {
-        const getLatestRecipes = async () => {
-            try{
-            const response = await axios.get('http://localhost:5000/api/recipes');
-            setRecipes(response.data);
-        } catch (error) { 
-            console.error("Error fetching items:", error);
-          }
-        }
-        getLatestRecipes(); // Call the function to fetch data
+  // Fetch data from the backend
+  useEffect(() => {
+    fetch("http://localhost:5000/api/getAllItems")
+      .then((response) => response.json())
+      .then((data) => setRecipes(data))
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
   return (
-    <div className='px-6 lg:px-12 py-20'>
-        <h1 className='text-3xl text-center mb-8 font-semibold text-secondary sm:text-5xl sm:leading-relaxed'>All Recipes</h1>
-        <CategoryWrapper/>
-    
-        <ul className='mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
-        {recipes.length > 0 ? (
-          recipes.map((recipes) => (
-            <Card key={recipes._id} recipes={recipes} /> // Renders each recipe using the Card component
-          ))
-        ) : (
-          <p className="text-center text-gray-500">No recipes found. Add a recipe to get started!</p>
-        )}
-      </ul>
+    <div className="flex flex-wrap gap-6 justify-center p-6">
+      {recipes.map((recipe) => (
+        <Card
+          key={recipe._id}
+          name={recipe.name}
+          image={imageUrl}  // Pass the static image URL here
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default Recipes;
