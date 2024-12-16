@@ -1,58 +1,37 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {GoClock} from "react-icons/go"
+import React, { useState } from "react";
 
-const Card = ({ item }) => {
-    const categoryStyles = {
-        Entrees: {backgroundColor: "#f0f5c4", color: "#59871f"},
-        Breakfast: {backgroundColor:"#efedfa" ,color:"#3c3a8f"},
-        Lunch: {backgroundColor:"#e5f7f3", color:"#1f8787"},
-        Desserts: {backgroundColor:"#e8f5fa", color:"#397a9e"},
-        Sides: {backgroundColor:"#feefc9", color:"#d16400"},
-        Drinks: {backgroundColor:"#ffeae3", color:"#f0493e"},
-        default:{backgroundColor:"#fff", color:"#000"}
-    };
-    const getCategoryStyle = (category) => {
-        return categoryStyles[category] || categoryStyles.default;
-    };
-     const categoryStyle = getCategoryStyle(item?.category)
+const Card = ({ name, image }) => {
+  const [showImage, setShowImage] = useState(true); // State to toggle image visibility
+
+  const handleImageToggle = () => {
+    setShowImage(!showImage); // Toggle image visibility
+  };
+
   return (
-    <div className='container mx-auto flex justify-center md:justify-start'> 
-      <div className='max-w-sm'>
-        <div className='bg-white relative shadow-lg hover:shadow-xl transition duration-500 rounded-lg'>
-          
-            <img src={item?.thumbnail_image || 'https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'} alt={`${item?.name || 'Recipe Thumbnail'}`} className='rounded-t-lg'/>
-             <div className='py-6 px-5 rounded-lg bg-white'>
-                <Link to={`/items/${item._id}`}>
-                      <h1 className='text-gray-700 font-bold text-2xl mb-8 hover:text-gray-900 hover:cursor-pointer'>{item?.name || "Recipe Name"}</h1>
-                </Link>
+    <div className="border border-gray-300 rounded-lg shadow-md w-72 p-4 text-center bg-blue-500 hover:bg-blue-400 transition-all duration-300">
+      {/* Button to toggle image visibility */}
+      <button
+        onClick={handleImageToggle}
+        className="mb-4 px-4 py-2 text-white bg-red-500 rounded-lg"
+      >
+        {showImage ? "Remove Image" : "Add Image"}
+      </button>
 
-                {/* category and reading times */}
-                 <div className='flex justify-between items-center flex-wrap'>
-                    <button className={'mt-6 py-2 px-4 font-medium rounded-lg shadow-md hover:shadow-lg transition duration-300'}
-                    style={{
-                        backgroundColor: categoryStyle.backgroundColor,
-                        color: categoryStyle.color,
-                    }}
-                    >{item?.category|| "Category"}</button>
+      {/* Show or hide the image based on the state */}
+      {showImage && (
+        <img
+          src={image}
+          alt={name}
+          className="w-full h-48 object-cover rounded-lg mb-4"
+          onError={(e) => {
+            e.target.src = "https://via.placeholder.com/300"; // Fallback image
+          }}
+        />
+      )}
 
-                    <div className='flex items-center py-2 mt-6'>
-                        <GoClock />
-                        <span className='ml-1'>{item?.more.prep_time || "easy"}</span>
-                    </div>
-                 </div>
-
-             </div>
-
-             <div className='absolute top-2 right-2 py-2 px-4 bg-white rounded-lg'>
-                <span className='font-medium'>{item?.more.difficulty || "30 minutes" }</span>
-             </div>
-
-        </div>
-
-      </div>
+      <h3 className="text-lg font-semibold text-white">{name}</h3>
     </div>
-  )
-}
+  );
+};
 
 export default Card;

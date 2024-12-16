@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react'
 import { useParams } from 'react-router-dom';
 import CategoryWrapper from './CategoryWrapper';
 import axios from 'axios';
-import Card from '../../components/Card';
+
 
 const CategoryPage = () => {
   const {category} = useParams();
