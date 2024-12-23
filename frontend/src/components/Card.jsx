@@ -6,9 +6,8 @@ const Card = ({ name, image }) => {
 
   const handleImageToggle = () => {
    
-     
-
     setShowImage(!showImage); // Toggle image visibility
+    
   };
 
   return (
@@ -32,6 +31,7 @@ const Card = ({ name, image }) => {
            <Link to="/addrecipe" className='font-medium capitalize text-secondary'>
            
            </Link>
+          
           }}
          
         />

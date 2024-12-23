@@ -30,7 +30,6 @@ const Resources = () => {
   return (
     <section className="px-6 lg:px-12 py-20">
       <h1 className="text-3xl text-center mb-8 font-semibold text-secondary sm:text-5xl sm:leading-relaxed">Resources</h1>
-
       <article className="py-6 sm:py-12">
         <div className="container p-6 mx-auto space-y-8">
           <div className="space-y-2 text-center">
