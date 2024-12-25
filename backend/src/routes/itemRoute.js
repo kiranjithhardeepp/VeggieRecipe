@@ -9,6 +9,6 @@ const {
 
 router.get("/getAllItems", getAllItems);
 router.get("/recipes", getSearchedItems);
-router.get("/recipes/:id", getSingleItem);
+router.post("/getSingleItem", getSingleItem);
 
 module.exports = router;

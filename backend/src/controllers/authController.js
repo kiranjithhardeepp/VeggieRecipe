@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");  // Import the User model
+const User = require("../models/User"); // Import the User model
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -24,7 +24,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }  // Set token expiration time
+      { expiresIn: "1h" } // Set token expiration time
     );
 
     // Send the token in the response
@@ -34,5 +34,7 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
 
 module.exports = { loginUser };
