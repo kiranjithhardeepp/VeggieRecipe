@@ -9,14 +9,15 @@ const AddRecipe = () => {
     preparationTime: "",
     cookTime: "",
     description: "",
-    image: null,
+    image: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const token = localStorage.getItem("authToken");
-    
+    console.log('token: ', token);
+
     const formData = new FormData();
     formData.append("name", recipeData.name);
     formData.append("recipeType", recipeData.recipeType);
@@ -27,22 +28,22 @@ const AddRecipe = () => {
     if (recipeData.image) {
       formData.append("image", recipeData.image);
     }
-  
+
     try {
       const response = await fetch("http://localhost:5000/api/recipes", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: formData,
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data.message || "Failed to add recipe");
       }
-  
+
       console.log("Recipe added successfully", data);
       // Reset form or navigate to another page
     } catch (error) {
@@ -60,7 +61,9 @@ const AddRecipe = () => {
       />
       <select
         value={recipeData.recipeType}
-        onChange={(e) => setRecipeData({ ...recipeData, recipeType: e.target.value })}
+        onChange={(e) =>
+          setRecipeData({ ...recipeData, recipeType: e.target.value })
+        }
       >
         <option value="">Select Recipe Type</option>
         <option value="entrees">Entrees</option>
@@ -73,29 +76,39 @@ const AddRecipe = () => {
       <textarea
         placeholder="Ingredients (List each ingredient on a new line)"
         value={recipeData.ingredients}
-        onChange={(e) => setRecipeData({ ...recipeData, ingredients: e.target.value })}
+        onChange={(e) =>
+          setRecipeData({ ...recipeData, ingredients: e.target.value })
+        }
       />
       <textarea
         placeholder="How to make the recipe"
         value={recipeData.description}
-        onChange={(e) => setRecipeData({ ...recipeData, description: e.target.value })}
+        onChange={(e) =>
+          setRecipeData({ ...recipeData, description: e.target.value })
+        }
       />
       <input
         type="text"
         placeholder="Preparation Time (e.g., 20 minutes)"
         value={recipeData.preparationTime}
-        onChange={(e) => setRecipeData({ ...recipeData, preparationTime: e.target.value })}
+        onChange={(e) =>
+          setRecipeData({ ...recipeData, preparationTime: e.target.value })
+        }
       />
       <input
         type="text"
         placeholder="Cook Time (e.g., 30 minutes)"
         value={recipeData.cookTime}
-        onChange={(e) => setRecipeData({ ...recipeData, cookTime: e.target.value })}
+        onChange={(e) =>
+          setRecipeData({ ...recipeData, cookTime: e.target.value })
+        }
       />
       <input
         type="file"
         accept="image/*"
-        onChange={(e) => setRecipeData({ ...recipeData, image: e.target.files[0] })}
+        onChange={(e) =>
+          setRecipeData({ ...recipeData, image: e.target.files[0] })
+        }
       />
       <button type="submit">Add Recipe</button>
     </form>

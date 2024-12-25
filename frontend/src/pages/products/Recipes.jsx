@@ -3,9 +3,7 @@ import Card from "../../components/Card"; // Import the Card component
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
-  const imageUrl =
-    "https://www.istockphoto.com/search/2/image-film?phrase=good+food"; // Your static image URL
-
+  console.log('recipes: ', recipes);
   // Fetch data from the backend
   useEffect(() => {
     fetch("http://localhost:5000/api/getAllItems")
@@ -19,8 +17,9 @@ const Recipes = () => {
       {recipes.map((recipe) => (
         <Card
           key={recipe._id}
+          id={recipe._id}
           name={recipe.name}
-          image={imageUrl}  // Pass the static image URL here
+          image={`http://localhost:5000/images/` + recipe.image} // Pass the static image URL here
         />
       ))}
     </div>
